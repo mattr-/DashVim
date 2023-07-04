@@ -1,5 +1,55 @@
 local M = {}
 
+local defaults = {
+  colorscheme = function()
+    vim.cmd.colorscheme("habamax")
+  end,
+  -- load the default settings
+  defaults = {
+    autocmds = true, -- lazyvim.config.autocmds
+    keymaps = true, -- lazyvim.config.keymaps
+    -- mattr-.config.options can't be configured here since that's loaded before we do setup
+    -- if you want to disable loading options, add `package.loaded["mattr-.config.options"] = true` to the top of your init.lua
+  },
+}
+
+
+local options
+
+function M.setup(opts)
+  options = vim.tbl_deep_extend("force", defaults, opts or {})
+
+  if vim.fn.argc(-1) == 0 then
+    -- autocmds and keymaps can wait to load
+    vim.api.nvim_create_autocmd("User", {
+      group = vim.api.nvim_create_augroup("LazyVim", { clear = true }),
+      pattern = "VeryLazy",
+      callback = function()
+        -- M.load("autocmds")
+        -- M.load("keymaps")
+      end,
+    })
+  else
+    -- load them now so they affect the opened buffers
+    --M.load("autocmds")
+    --M.load("keymaps")
+  end
+
+  require("lazy.core.util").try(function()
+    if type(M.colorscheme) == "function" then
+      M.colorscheme()
+    else
+      vim.cmd.colorscheme(M.colorscheme)
+    end
+  end, {
+    msg = "Could not load your colorscheme",
+    on_error = function(msg)
+      require("lazy.core.util").error(msg)
+      vim.cmd.colorscheme("habamax")
+    end,
+  })
+end
+
 ---@param name "autocmds" | "options" | "keymaps"
 function M.load(name)
   local Util = require("lazy.core.util")
@@ -43,5 +93,16 @@ function M.init()
     require("mattr-.config").load("options")
   end
 end
+
+setmetatable(M, {
+  __index = function(_, key)
+    if options == nil then
+      return vim.deepcopy(defaults)[key]
+    end
+    ---@cast options LazyVimConfig
+    return options[key]
+  end,
+})
+
 
 return M
