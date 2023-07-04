@@ -37,3 +37,5 @@ function M.lazy_notify()
   -- or if it took more than 500ms, then something went wrong
   timer:start(500, 0, replay)
 end
+
+return M
