@@ -1,5 +1,11 @@
 local M = {}
 
+-- have we configured a plugin?
+-- plugin is a string
+function M.has(plugin)
+  return require("lazy.core.config").spec.plugins[plugin] ~= nil
+end
+
 -- taken from LazyVim/LazyVim/lua/lazyvim/util/init.lua at d33be73b8d0a1f6b1dbabfc30bbac02d88d177b9
 -- delay notifications till vim.notify was replaced or after 500ms
 function M.lazy_notify()
