@@ -11,6 +11,19 @@ local defaults = {
     -- mattr-.config.options can't be configured here since that's loaded before we do setup
     -- if you want to disable loading options, add `package.loaded["mattr-.config.options"] = true` to the top of your init.lua
   },
+  icons = {
+    diagnostics = {
+      Error = " ",
+      Warn = " ",
+      Hint = " ",
+      Info = " ",
+    },
+    git = {
+      added = " ",
+      modified = " ",
+      removed = " ",
+    },
+  },
 }
 
 
