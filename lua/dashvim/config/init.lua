@@ -131,6 +131,23 @@ function M.setup(opts)
       M.load("keymaps")
     end,
   })
+
+  -- Setup the colorscheme
+  DashVim.track("colorscheme")
+  DashVim.try(function()
+    if type(M.colorscheme) == "function" then
+      M.colorscheme()
+    else
+      vim.cmd.colorscheme(M.colorscheme)
+    end
+  end, {
+    msg = "Could not load your colorscheme",
+    on_error = function(msg)
+      DashVim.error(msg)
+      vim.cmd.colorscheme("habamax")
+    end,
+  })
+  DashVim.track()
 end
 
 return M
