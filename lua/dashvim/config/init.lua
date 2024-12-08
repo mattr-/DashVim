@@ -4,6 +4,12 @@ local M = {}
 --- @class DashVimOptions
 local defaults = {
   colorscheme = "tokyonight",
+  defaults = {
+    autocmds = true, -- dashvim.config.autocmds
+    keymaps = true, -- dashvim.config.keymaps
+    -- options cannot be configured here. they load before setup
+    -- use `package.loaded["dashvim.config.options"] = true` to the top of your init.lua
+  },
   icons = {
     dap = {
       Stopped = { "󰁕 ", "DiagnosticWarn", "DapStoppedLine" },
@@ -92,7 +98,7 @@ function M.load(name)
 
       })
   end
-  -- always load lazyvim, then user file
+  -- always load ours, then user file
   if M.defaults[name] or name == "options" then
     _load("dashvim.config." .. name)
   end
@@ -102,11 +108,29 @@ function M.load(name)
     -- HACK: We may have overwritten options of the Lazy ui, so reset this here
     vim.cmd([[do VimResized]])
   end
-  vim.api.nvim_exec_autocmds("User", { pattern = pattern, modeline = false })
 end
 
 function M.setup(opts)
   options = vim.tbl_deep_extend("force", defaults, opts or {}) or {}
+
+  -- autocmds can be loaded lazily when not opening a file
+  local lazy_autocmds = vim.fn.argc(-1) == 0
+  if not lazy_autocmds then
+    M.load("autocmds")
+  end
+
+  -- Load autocmds and keymaps during VeryLazy (which is very close to VimEnter)
+  local group = vim.api.nvim_create_augroup("DashVim", { clear = true })
+  vim.api.nvim_create_autocmd("User", {
+    group = group,
+    pattern = "VeryLazy",
+    callback = function()
+      if lazy_autocmds then
+        M.load("autocmds")
+      end
+      M.load("keymaps")
+    end,
+  })
 end
 
 return M
