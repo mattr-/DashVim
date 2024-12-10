@@ -9,6 +9,9 @@ if vim.fn.has("nvim-0.10.0") == 0 then
   vim.cmd([[quit]])
 end
 
+-- Do a minimal amount of early initialization
+require("dashvim").init()
+
 return {
   { "folke/lazy.nvim", version = "*" },
   { "mattr-/DashVim", priority = 10000, lazy = false, opts = {}, cond = true, version = "*" },
