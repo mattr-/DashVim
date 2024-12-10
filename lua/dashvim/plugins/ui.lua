@@ -14,4 +14,7 @@ return {
 
   -- nui is used by a bunch of other things
   { "MunifTanjim/nui.nvim", lazy = true },
+
+  -- tokyonight will be the default color scheme
+  { "folke/tokyonight.nvim", lazy = true },
 }
