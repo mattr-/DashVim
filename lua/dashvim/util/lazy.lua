@@ -12,5 +12,13 @@ function M.opts(name)
   return Plugin.values(plugin, "opts", false)
 end
 
+function M.get_plugin(name)
+  return require("lazy.core.config").spec.plugins[name]
+end
+
+function M.has(plugin)
+  return M.get_plugin(plugin) ~= nil
+end
+
 return M
 
