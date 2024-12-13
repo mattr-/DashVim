@@ -10,6 +10,8 @@ function M.init()
     -- this is needed to make sure options will be correctly applied
     -- after installing missing plugins
     require("dashvim.config").load("options")
+
+    DashVim.lazy.add_lazy_file()
   end
 end
 
