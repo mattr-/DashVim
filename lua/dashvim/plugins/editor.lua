@@ -18,10 +18,12 @@ return {
         "<cmd>Telescope buffers sort_mru=true sort_lastused=true<cr>",
         desc = "Switch Buffer",
       },
-      { "<leader>/", "<cmd>Telescope live_grep<cr>", desc = "Grep (root dir)" },
-      { "<leader>:", "<cmd>Telescope command_history<cr>", desc = "Command History" },
-      { "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "Find Files (root dir)" },
-      { "<leader>fg", "<cmd>Telescope git_files<cr>", desc = "Find Files (git)" },
+      { "<leader>/", DashVim.telescope.live_grep, desc = "Grep (root dir)" },
+      { "<leader>:", DashVim.telescope.command_history, desc = "Command History" },
+      { "<leader>fc", DashVim.telescope.config_files, desc = "Find Config File" },
+      { "<leader>ff", DashVim.telescope.find_files, desc = "Find Files (root dir)" },
+      { "<leader>fg", DashVim.telescope.git_files, desc = "Find Files (git)" },
+      { "<leader>fP", DashVim.telescope.plugin_files, desc = "Find Plugin File" },
     },
     opts = {
       defaults = {

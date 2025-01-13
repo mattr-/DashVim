@@ -2,6 +2,7 @@ local LazyUtil = require("lazy.core.util")
 
 --- @class dashvim.util: LazyUtilCore
 --- @field lazy dashvim.util.lazy
+--- @field telescope dashvim.util.telescope
 local M = {}
 
 setmetatable(M, {
