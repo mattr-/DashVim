@@ -15,5 +15,11 @@ return {
     opts = {},
     -- hook into the package loader to have mini.icons mock out
     -- nvim-web-devicons if something attempts to load nvim-web-devicons
+    init = function()
+      package.preload["nvim-web-devicons"] = function()
+        require("mini.icons").mock_nvim_web_devicons()
+        return package.loaded["nvim-web-devicons"]
+      end
+    end,
   },
 }
