@@ -1,3 +1,5 @@
+require("dashvim.config.options")
+
 return
 {
   { "folke/lazy.nvim", version = "*" },
