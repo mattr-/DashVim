@@ -92,4 +92,14 @@ return {
       require("noice").setup(opts)
     end,
   },
+
+  -- Configure snacks for image previews, notifications, and `vim.ui.select` replacement
+  {
+    "folke/snacks.nvim",
+    opts = {
+      image = { enabled = true },
+      picker = { enabled = true },
+      notifier = { enabled = true },
+    },
+  },
 }
