@@ -1,4 +1,4 @@
-require("dashvim.config.options")
+require("dashvim.config").early_init()
 
 return
 {
