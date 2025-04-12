@@ -12,6 +12,11 @@ local defaults = {
       Hint = " ",
       Info = " ",
     },
+    git = {
+      added = " ",
+      modified = " ",
+      deleted = " ",
+    },
   },
 }
 
