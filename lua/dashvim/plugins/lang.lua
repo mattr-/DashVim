@@ -1,4 +1,5 @@
 local language_plugins = {
+  "dashvim.plugins.lang.lua",
   "dashvim.plugins.lang.markdown",
 };
 
