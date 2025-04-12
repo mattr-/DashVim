@@ -28,6 +28,8 @@ function M.early_init()
   end
 
   require("dashvim.config.options")
+  require("dashvim.config.autocmds")
+  require("dashvim.config.keymaps")
 end
 
 setmetatable(M, {
