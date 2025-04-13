@@ -102,4 +102,47 @@ return {
       notifier = { enabled = true },
     },
   },
+  {
+    "nvim-lualine/lualine.nvim",
+    event = "VeryLazy",
+    -- init = function()
+    --   vim.g.lualine_laststatus = vim.o.laststatus
+    --   if vim.fn.argc(-1) > 0 then
+    --     -- set an empty statusline till lualine loads
+    --     vim.o.statusline = " "
+    --   else
+    --     -- hide the statusline on the starter page
+    --     vim.o.laststatus = 0
+    --   end
+    -- end,
+    opts = function()
+      -- Disable the lualine_require stuff. It's overcomplicated and unnecessary
+      local lualine_require = require("lualine_require")
+      lualine_require.require = require
+
+      vim.o.laststatus = vim.g.lualine_laststatus
+
+      return {
+        options = {
+          theme = "auto",
+          globalstatus = true,
+          disabled_filetypes = {
+            statusline = { "dashboard", "alpha", "snacks_dashboard" }
+          },
+          section_separators = { left = "", right = "" },
+        },
+        sections = {
+          lualine_a = {
+            DashVim.lualine.mode,
+          },
+          lualine_b = { "branch", "diff" },
+          lualine_c = { DashVim.lualine.path() },
+          lualine_x = { "diagnostics" },
+          lualine_y = { "filetype" },
+          lualine_z = { "location" },
+        },
+        extensions = { "lazy" },
+      }
+    end,
+  },
 }
