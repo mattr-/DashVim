@@ -1,5 +1,6 @@
-_G.DashVim = require("dashvim")
----@class dashvim.config
+_G.DashVim = require("dashvim.util")
+
+---@class DashVimConfig :DashVimOptions
 local M = {}
 
 ---@class DashVimOptions
