@@ -19,6 +19,16 @@ local options
 
 function M.setup(opts)
   options = vim.tbl_deep_extend("force", defaults, opts or {}) or {}
+
+  local augroup = vim.api.nvim_create_augroup("DashVim", { clear = true })
+  vim.api.nvim_create_autocmd("User", {
+    pattern = "VeryLazy",
+    group = augroup,
+    callback = function()
+      M.cascade_load("autocmds")
+      M.cascade_load("keymaps")
+    end,
+  })
 end
 
 --- @param name "autocmds" | "keymaps" | "options"
@@ -41,9 +51,15 @@ function M.early_init()
     return
   end
 
+  -- Add our ourselves to RTP since we won't be loaded yet.
+  local ourselves = require("lazy.core.config").spec.plugins.DashVim
+  if ourselves then
+    vim.opt.rtp:append(ourselves.dir)
+  end
+
+
+
   M.cascade_load("options")
-  M.cascade_load("autocmds")
-  M.cascade_load("keymaps")
 end
 
 setmetatable(M, {
