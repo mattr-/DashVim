@@ -121,6 +121,7 @@ return {
       lualine_require.require = require
 
       vim.o.laststatus = vim.g.lualine_laststatus
+      local icons = DashVim.config.icons
 
       return {
         options = {
@@ -136,7 +137,16 @@ return {
           lualine_a = {
             DashVim.lualine.mode,
           },
-          lualine_b = { "branch", "diff" },
+          lualine_b = { { "branch" }, 
+            {
+              "diff",
+              symbols = {
+                added = icons.git.added,
+                modified = icons.git.modified,
+                removed = icons.git.removed,
+              },
+            },
+          },
           lualine_c = {
             { "filetype", icon_only = true, separator = "", padding = { left = 1, right = 0 } },
             { DashVim.lualine.path() },

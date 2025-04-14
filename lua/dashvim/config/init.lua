@@ -3,6 +3,8 @@ _G.DashVim = require("dashvim.util")
 ---@class DashVimConfig :DashVimOptions
 local M = {}
 
+DashVim.config = M
+
 ---@class DashVimOptions
 local defaults = {
   colorscheme = "catppuccin",
@@ -12,6 +14,11 @@ local defaults = {
       Warn = " ",
       Hint = " ",
       Info = " ",
+    },
+    git = {
+      added = " ",
+      modified = " ",
+      removed = " ",
     },
   },
 }
