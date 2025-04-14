@@ -137,7 +137,10 @@ return {
             DashVim.lualine.mode,
           },
           lualine_b = { "branch", "diff" },
-          lualine_c = { DashVim.lualine.path() },
+          lualine_c = {
+            { "filetype", icon_only = true, separator = "", padding = { left = 1, right = 0 } },
+            { DashVim.lualine.path() },
+          },
           lualine_x = { "diagnostics" },
           lualine_y = { "filetype" },
           lualine_z = { "location" },
