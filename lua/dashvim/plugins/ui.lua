@@ -152,7 +152,6 @@ return {
             { DashVim.lualine.path() },
           },
           lualine_x = { "diagnostics" },
-          lualine_y = { "filetype" },
           lualine_y = {
             -- stylua: ignore
             {
