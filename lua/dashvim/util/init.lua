@@ -1,5 +1,6 @@
 
 --- @class dashvim.util: LazyUtilCore
+--- @field dashvim.config: DashVimConfig
 --- @field dashvim.lazy: dashvim.util.lazy
 local M = {}
 
