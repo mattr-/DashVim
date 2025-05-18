@@ -59,6 +59,8 @@ function M.early_init()
     return
   end
 
+  M.early_init_done = true
+
   -- Add our ourselves to RTP since we won't be loaded yet.
   local ourselves = require("lazy.core.config").spec.plugins.DashVim
   if ourselves then
