@@ -67,8 +67,6 @@ function M.early_init()
     vim.opt.rtp:append(ourselves.dir)
   end
 
-
-
   M.cascade_load("options")
 end
 
