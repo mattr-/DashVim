@@ -73,7 +73,7 @@ end
 setmetatable(M, {
   __index = function(_, key)
     if options == nil then
-      return defaults[key]
+      return vim.deepcopy(defaults)[key]
     end
 
     return options[key]
