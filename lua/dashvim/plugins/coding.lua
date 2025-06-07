@@ -29,7 +29,7 @@ return {
     version = "v2.*",
     build = "make install_jsregexp",
     event = "InsertEnter",
-    opts = {
+    opts = function()
       local types = require("luasnip.util.types")
       return {
         history = true,
@@ -40,7 +40,6 @@ return {
           },
         },
       }
-    }
-
+    end,
   },
 }
