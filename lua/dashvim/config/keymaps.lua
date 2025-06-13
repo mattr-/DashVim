@@ -30,5 +30,10 @@ map("o", "N", "'nN'[v:searchforward]", { expr = true, desc = "Prev Search Result
 map({"x"}, "<", "<gv", { desc = "Shift Left" })
 map({"x"}, ">", ">gv", { desc = "Shift Right" })
 
+-- Lazygit integration
+if vim.fn.executable("lazygit") == 1 then
+  map("n", "<leader>gg", function() Snacks.lazygit() end, { desc = "Lazygit" })
+end
+
 map("n", "<leader>l", "<cmd>Lazy<cr>", { desc = "Lazy" })
 
