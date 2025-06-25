@@ -7,6 +7,71 @@ return {
     opts = {}
   },
 
+  --which-key for key binding navigation
+  {
+    "folke/which-key.nvim",
+    event = "VeryLazy",
+    --make it easy for other plugins to augment which-key
+    opts_extend = { "spec" },
+    opts = {
+      spec = {
+        {
+          mode = { "n", "v" },
+          { "<leader>b",
+            group = "buffers",
+            expand = function()
+              return require("which-key.extras").expand.buf()
+            end,
+          },
+          { "<leader>c", group = "code" },
+          { "<leader>f", group = "file" },
+          { "<leader>g", group = "git" },
+          { "<leader>s", group = "search" },
+        },
+      },
+      icons =  {
+        separator = "󰁕 ",
+        ellipsis = "… ",
+        rules = {
+          -- make the icon for the code pattern nicer
+          { pattern = "code", icon = " ", color = "orange" },
+          -- make the icon for search stand out less
+          { pattern = "find", icon = " ", color = "green" },
+          { pattern = "search", icon = " ", color = "green" },
+        },
+        -- fix some key icons not being double width and replacing some of the
+        -- icons
+        keys = {
+          Up = "󰛃 ",
+          Down = "󰛀 ",
+          Left = "󰛁 ",
+          Right = "󰛂 ",
+          BS = "󰁮 ",
+          F1 = "󱊫 ",
+          F2 = "󱊬 ",
+          F3 = "󱊭 ",
+          F4 = "󱊮 ",
+          F5 = "󱊯 ",
+          F6 = "󱊰 ",
+          F7 = "󱊱 ",
+          F8 = "󱊲 ",
+          F9 = "󱊳 ",
+          F10 = "󱊴 ",
+          F11 = "󱊵 ",
+          F12 = "󱊶 ",
+        },
+      },
+    },
+    keys = {
+      { "<leader>?",
+        function()
+          require("which-key").show({ global = false })
+        end,
+        desc = "Buffer Local Keymap",
+      },
+    },
+  },
+
   --mini.icons for filetype and other icons
   {
     "echasnovski/mini.icons",
