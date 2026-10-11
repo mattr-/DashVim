@@ -41,7 +41,7 @@ end
 
 --- @param name "autocmds" | "keymaps" | "options"
 function M.cascade_load(name)
-  function _try_load(mod)
+  local function _try_load(mod)
     if require("lazy.core.cache").find(mod)[1] then
       require("lazy.core.util").try(function()
         require(mod)
