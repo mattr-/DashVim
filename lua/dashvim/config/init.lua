@@ -7,7 +7,7 @@ DashVim.config = M
 
 ---@class DashVimOptions
 local defaults = {
-  colorscheme = "catppuccin",
+  colorscheme = "catppuccin-mocha",
   icons = {
     diagnostics = {
       Error = " ",
