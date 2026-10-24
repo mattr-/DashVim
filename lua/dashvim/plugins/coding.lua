@@ -47,14 +47,4 @@ return {
       },
     },
   },
-
-  -- Blink.cmp for completions
-  {
-    "saghen/blink.cmp",
-    version = "1.*",
-    opts = {
-      snippets = { preset = "luasnip" },
-      fuzzy = { implementation = "prefer_rust" },
-    },
-  },
 }
