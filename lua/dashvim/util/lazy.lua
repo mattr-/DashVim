@@ -9,6 +9,7 @@ setmetatable(M, {
     if LazyUtil[key] then
       return LazyUtil[key]
     end
+  end
 })
 
 return M
